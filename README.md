@@ -1,4 +1,4 @@
-# Evergreen Grounds — Website Setup
+# Tree Amigos Landscaping — Website Setup
 
 This is a single static site: `index.html` + an `images/` folder. No build step,
 no npm, no server required. It works by just opening the file, and deploys in
@@ -31,18 +31,12 @@ The form needs somewhere to send submissions:
 3. Open `index.html`, search for `your-form-id`, and replace that whole URL with the one Formspree gave you.
 4. Submissions will land in the email you signed up with.
 
-## 3. Put it on GitHub (5 min)
-
-1. Create a free GitHub account if you don't have one: https://github.com
-2. Create a new repository (e.g. `evergreen-grounds-site`).
-3. Upload this whole folder (`index.html`, `README.md`, and `images/` with your photos) — GitHub's web uploader (drag-and-drop) works fine, no command line needed.
-
-## 4. Deploy — free, live in ~2 minutes
+## 3. Deploy — free, live in ~2 minutes
 
 **Vercel** (recommended):
 1. Go to https://vercel.com and sign up with your GitHub account.
 2. Click "Add New Project," select your repository, click Deploy.
-3. You'll get a live URL immediately (something like `evergreen-grounds.vercel.app`).
+3. You'll get a live URL immediately (something like `Tree-amigos-NJ.vercel.app`).
 
 **Netlify** works the same way if you prefer it — https://netlify.com, "Add new site" → "Import an existing project" → pick the repo.
 
@@ -50,7 +44,7 @@ Either way: every time you push a change to GitHub (like adding new photos), the
 
 ## 5. Add your own domain (optional, ~15 min, ~$12/year)
 
-1. Buy a domain (e.g. `evergreengrounds.com`) from Namecheap or a similar registrar.
+1. Buy a domain (e.g. `TreeAmigosNJ.com`) from Namecheap or a similar registrar.
 2. In your Vercel/Netlify project settings, go to "Domains" and add it.
 3. Follow the DNS instructions it gives you (usually just adding one or two records at your registrar) — it walks you through it.
 4. SSL (the padlock/https) is automatic and free on both platforms.
