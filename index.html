@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tree Amigos Landscaping NJ | Free Estimates | Local Landscaping Company</title>
+<meta name="description" content="Professional landscaping, lawn maintenance, masonry, tree services and snow removal. Licensed, insured, and free estimates. Request yours today.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --forest:#2E5E3E;
+    --sage:#7EA172;
+    --beige:#F6F3EC;
+    --brown:#4A3B2A;
+    --white:#FFFFFF;
+    --forest-dark:#20452D;
+    --sage-light:#B9CDAF;
+    --radius:16px;
+    --radius-sm:12px;
+    --shadow:0 8px 24px rgba(74,59,42,0.08);
+    --shadow-lift:0 16px 36px rgba(46,94,62,0.18);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',sans-serif;
+    color:var(--brown);
+    background:var(--white);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{font-family:'Poppins',sans-serif;color:var(--forest);line-height:1.15;}
+  a{text-decoration:none;color:inherit;}
+  ul{list-style:none;}
+  img{max-width:100%;display:block;}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;}
+  .container{max-width:1180px;margin:0 auto;padding:0 24px;}
+  section{padding:96px 0;}
+  .eyebrow{
+    text-transform:uppercase;
+    letter-spacing:.14em;
+    font-size:.78rem;
+    font-weight:600;
+    color:var(--sage);
+    margin-bottom:12px;
+    display:block;
+  }
+  .section-head{max-width:640px;margin:0 auto 56px;text-align:center;}
+  .section-head h2{font-size:clamp(1.8rem,3.2vw,2.5rem);margin-bottom:14px;}
+  .section-head p{color:#5c5044;font-size:1.05rem;}
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:15px 30px;
+    border-radius:100px;
+    font-weight:600;
+    font-size:.95rem;
+    transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+  }
+  .btn-primary{background:var(--sage);color:var(--forest-dark);box-shadow:var(--shadow);}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:var(--shadow-lift);background:#8FAF80;}
+  .btn-outline{border:1.5px solid rgba(255,255,255,.7);color:var(--white);}
+  .btn-outline:hover{background:rgba(255,255,255,.12);transform:translateY(-2px);}
+  .btn-dark{background:var(--forest);color:var(--white);}
+  .btn-dark:hover{background:var(--forest-dark);transform:translateY(-2px);box-shadow:var(--shadow-lift);}
+
+  /* reveal on scroll */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+    html{scroll-behavior:auto;}
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:1000;
+    padding:16px 0;
+    background:rgba(246,243,236,.94);
+    backdrop-filter:blur(10px);
+    box-shadow:0 2px 14px rgba(74,59,42,.06);
+    transition:padding .3s ease, box-shadow .3s ease;
+  }
+  header.scrolled{padding:10px 0;box-shadow:0 4px 20px rgba(74,59,42,.1);}
+  nav{display:flex;align-items:center;justify-content:space-between;}
+  .logo{display:flex;align-items:center;gap:10px;}
+  .logo img{height:52px;width:auto;display:block;transition:height .3s ease;}
+  header.scrolled .logo img{height:42px;}
+  .nav-links{display:flex;align-items:center;gap:36px;}
+  .nav-links a:not(.btn){font-weight:500;font-size:.95rem;color:var(--forest);position:relative;padding:4px 0;}
+  .nav-links a:not(.btn)::after{
+    content:'';position:absolute;left:0;bottom:-2px;height:2px;width:0;background:var(--sage);
+    transition:width .25s ease;
+  }
+  .nav-links a:not(.btn):hover::after{width:100%;}
+  .nav-toggle{display:none;flex-direction:column;gap:5px;background:none;z-index:1001;}
+  .nav-toggle span{width:26px;height:2px;background:var(--forest);transition:.3s;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    background-image:
+      linear-gradient(160deg, rgba(32,69,45,.82) 0%, rgba(46,94,62,.78) 55%, rgba(126,161,114,.55) 130%),
+      var(--hero-img, none),
+      linear-gradient(160deg,var(--forest-dark) 0%,var(--forest) 55%,var(--sage) 130%);
+    background-size:cover;
+    background-position:center;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:'';position:absolute;inset:0;
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(255,255,255,.06) 0, transparent 40%),
+      radial-gradient(circle at 85% 75%, rgba(255,255,255,.08) 0, transparent 45%);
+  }
+  .hero-leaf{position:absolute;opacity:.14;pointer-events:none;}
+  .hero-leaf.l1{top:-60px;right:-40px;width:340px;transform:rotate(12deg);}
+  .hero-leaf.l2{bottom:-80px;left:-60px;width:280px;transform:rotate(-18deg);}
+  .hero-inner{position:relative;z-index:2;max-width:660px;padding-top:110px;}
+  .hero h1{color:var(--white);font-size:clamp(2.3rem,5vw,3.6rem);margin-bottom:20px;font-weight:700;}
+  .hero p{color:rgba(255,255,255,.88);font-size:1.15rem;margin-bottom:34px;max-width:520px;}
+  .hero-buttons{display:flex;gap:16px;flex-wrap:wrap;}
+
+  /* vine divider - signature element */
+  .vine-divider{width:100%;height:70px;display:block;margin:0 auto;overflow:visible;}
+  .vine-path{
+    fill:none;stroke:var(--sage);stroke-width:2;stroke-linecap:round;
+    stroke-dasharray:600;stroke-dashoffset:600;
+    transition:stroke-dashoffset 1.4s ease;
+  }
+  .vine-divider.visible .vine-path{stroke-dashoffset:0;}
+  .vine-leaf{fill:var(--sage);opacity:0;transition:opacity .6s ease .9s;}
+  .vine-divider.visible .vine-leaf{opacity:1;}
+
+  /* ---------- SERVICES ---------- */
+  .services{background:var(--white);}
+  .service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+  .service-card{
+    background:var(--beige);
+    border-radius:var(--radius);
+    padding:32px 28px;
+    transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .service-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lift);}
+  .service-icon{
+    width:52px;height:52px;border-radius:50%;background:var(--forest);
+    display:flex;align-items:center;justify-content:center;margin-bottom:18px;
+  }
+  .service-icon svg{width:26px;height:26px;stroke:var(--white);}
+  .service-card h3{font-size:1.15rem;margin-bottom:12px;}
+  .service-card ul li{
+    font-size:.92rem;color:#5c5044;padding:5px 0 5px 20px;position:relative;
+  }
+  .service-card ul li::before{
+    content:'';position:absolute;left:0;top:13px;width:8px;height:8px;border-radius:50%;background:var(--sage);
+  }
+  .service-more{
+    grid-column:1/-1;text-align:center;padding:20px;color:var(--sage);font-weight:600;font-style:italic;
+  }
+
+  /* ---------- WHY CHOOSE US ---------- */
+  .why{background:var(--forest);}
+  .why .section-head h2, .why .section-head p{color:var(--white);}
+  .why .section-head p{color:rgba(255,255,255,.8);}
+  .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+  .why-card{
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:var(--radius);
+    padding:30px 24px;text-align:center;
+    transition:transform .3s ease, background .3s ease;
+  }
+  .why-card:hover{transform:translateY(-6px);background:rgba(255,255,255,.1);}
+  .why-card svg{width:34px;height:34px;stroke:var(--sage-light);margin-bottom:16px;}
+  .why-card h4{color:var(--white);font-size:1.02rem;margin-bottom:8px;}
+  .why-card p{color:rgba(255,255,255,.72);font-size:.9rem;}
+
+  /* ---------- TESTIMONIALS ---------- */
+  .testimonial-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+  .testimonial-card{
+    background:var(--beige);border-radius:var(--radius);padding:32px 28px;
+    transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .testimonial-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lift);}
+  .stars{display:flex;gap:4px;margin-bottom:16px;}
+  .stars svg{width:18px;height:18px;fill:var(--sage);}
+  .testimonial-card p.quote{font-size:.98rem;color:var(--brown);margin-bottom:20px;font-style:italic;}
+  .testimonial-name{font-weight:600;color:var(--forest);font-size:.95rem;}
+
+  /* ---------- CTA BANNER ---------- */
+  .cta-banner{
+    background:linear-gradient(120deg,var(--forest-dark),var(--forest));
+    padding:80px 0;text-align:center;
+  }
+  .cta-banner h2{color:var(--white);font-size:clamp(1.7rem,3.4vw,2.4rem);margin-bottom:26px;}
+
+  /* ---------- GALLERY ---------- */
+  .gallery-page{background:var(--beige);}
+  .filter-bar{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:44px;}
+  .filter-btn{
+    padding:10px 22px;border-radius:100px;font-size:.88rem;font-weight:600;
+    background:var(--white);color:var(--forest);border:1.5px solid var(--sage-light);
+    transition:.25s;
+  }
+  .filter-btn:hover{background:var(--sage-light);}
+  .filter-btn.active{background:var(--forest);color:var(--white);border-color:var(--forest);}
+  .gallery-grid{
+    columns:3;column-gap:22px;
+  }
+  .gallery-item{
+    break-inside:avoid;margin-bottom:22px;border-radius:var(--radius);overflow:hidden;
+    position:relative;cursor:pointer;box-shadow:var(--shadow);
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .gallery-item:hover{transform:translateY(-4px);box-shadow:var(--shadow-lift);}
+  .gallery-tile{
+    aspect-ratio:var(--ar,4/3);width:100%;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+    color:var(--white);position:relative;overflow:hidden;
+    background-image:var(--img,none);
+    background-size:cover;background-position:center;
+    transition:transform .5s ease;
+  }
+  .gallery-item:hover .gallery-tile{transform:scale(1.04);}
+  .gallery-tile svg{width:38px;height:38px;stroke:rgba(255,255,255,.9);transition:transform .4s ease, opacity .3s ease;}
+  .gallery-item:hover .gallery-tile svg{transform:scale(1.15) rotate(-4deg);}
+  .gallery-tile span.tile-label{font-weight:600;font-size:.95rem;letter-spacing:.02em;text-align:center;padding:0 14px;text-shadow:0 1px 6px rgba(0,0,0,.35);}
+  .gallery-tile::after{
+    content:'';position:absolute;inset:0;background:rgba(0,0,0,0);transition:background .3s ease;
+  }
+  .gallery-item:hover .gallery-tile::after{background:rgba(0,0,0,.12);}
+  .badge{
+    position:absolute;top:12px;left:12px;background:rgba(255,255,255,.92);color:var(--forest);
+    font-size:.72rem;font-weight:700;padding:5px 12px;border-radius:100px;letter-spacing:.03em;
+    text-transform:uppercase;
+  }
+  .g-landscaping{background:linear-gradient(150deg,#3C7350,#2E5E3E);}
+  .g-patios{background:linear-gradient(150deg,#8A7358,#4A3B2A);}
+  .g-walkways{background:linear-gradient(150deg,#9C8B6E,#6B5842);}
+  .g-mulch{background:linear-gradient(150deg,#5B4632,#4A3B2A);}
+  .g-trees{background:linear-gradient(150deg,#4C7A47,#264A2A);}
+  .g-snow{background:linear-gradient(150deg,#7EA172,#4E6E56);}
+
+  /* ---------- CONTACT ---------- */
+  .contact-page{background:var(--white);}
+  .contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:start;}
+  .contact-info h2{font-size:1.9rem;margin-bottom:16px;}
+  .contact-info>p{color:#5c5044;margin-bottom:34px;}
+  .info-row{display:flex;gap:16px;margin-bottom:24px;align-items:flex-start;}
+  .info-icon{
+    width:42px;height:42px;border-radius:12px;background:var(--beige);flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .info-icon svg{width:20px;height:20px;stroke:var(--forest);}
+  .info-row h4{font-size:.95rem;margin-bottom:3px;}
+  .info-row p{font-size:.92rem;color:#5c5044;}
+  .map-placeholder{
+    margin-top:8px;border-radius:var(--radius);height:200px;
+    background:repeating-linear-gradient(45deg,var(--beige),var(--beige) 10px,#EFE9DB 10px,#EFE9DB 20px);
+    display:flex;align-items:center;justify-content:center;color:#8a7d68;font-size:.85rem;font-weight:500;
+    border:1.5px dashed var(--sage-light);
+  }
+  .form-card{
+    background:var(--beige);border-radius:var(--radius);padding:40px;box-shadow:var(--shadow);
+  }
+  .form-card h3{margin-bottom:6px;font-size:1.3rem;}
+  .form-card>p{color:#5c5044;font-size:.92rem;margin-bottom:26px;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .field{margin-bottom:18px;}
+  .field label{display:block;font-size:.85rem;font-weight:600;color:var(--forest);margin-bottom:6px;}
+  .field input,.field select,.field textarea{
+    width:100%;padding:13px 14px;border-radius:var(--radius-sm);border:1.5px solid #E0D9C8;
+    background:var(--white);font-family:inherit;font-size:.92rem;color:var(--brown);
+    transition:border-color .2s ease, box-shadow .2s ease;
+  }
+  .field input:focus,.field select:focus,.field textarea:focus,
+  .field input:focus-visible,.field select:focus-visible{
+    outline:none;border-color:var(--sage);box-shadow:0 0 0 3px rgba(126,161,114,.22);
+  }
+  .field textarea{resize:vertical;min-height:100px;}
+  .file-field{
+    border:1.5px dashed var(--sage-light);border-radius:var(--radius-sm);padding:20px;text-align:center;
+    background:var(--white);cursor:pointer;transition:.2s;
+  }
+  .file-field:hover{border-color:var(--sage);}
+  .file-field svg{width:24px;height:24px;stroke:var(--sage);margin-bottom:6px;}
+  .file-field span{display:block;font-size:.85rem;color:#8a7d68;}
+  .file-field input{display:none;}
+  #file-name{font-size:.82rem;color:var(--forest);margin-top:6px;font-weight:600;}
+  .submit-btn{width:100%;justify-content:center;padding:16px;font-size:1rem;}
+  .form-msg{
+    margin-top:16px;padding:14px 16px;border-radius:var(--radius-sm);font-size:.88rem;display:none;
+  }
+  .form-msg.show{display:block;}
+  .form-msg.success{background:#E4EFE1;color:var(--forest-dark);}
+
+  a:focus-visible, button:focus-visible{outline:2.5px solid var(--sage);outline-offset:3px;}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--brown);color:rgba(255,255,255,.75);padding:56px 0 26px;}
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;margin-bottom:40px;}
+  .footer-logo{display:inline-block;background:var(--white);border-radius:var(--radius-sm);padding:10px 16px;margin-bottom:16px;}
+  .footer-logo img{height:44px;width:auto;display:block;}
+  footer h5{color:var(--white);font-size:.9rem;margin-bottom:16px;letter-spacing:.03em;}
+  footer ul li{margin-bottom:10px;font-size:.9rem;}
+  footer ul li a:hover{color:var(--sage-light);}
+  .footer-bottom{
+    border-top:1px solid rgba(255,255,255,.12);padding-top:22px;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:.82rem;color:rgba(255,255,255,.55);
+  }
+
+  .back-to-top{
+    position:fixed;bottom:26px;right:26px;width:48px;height:48px;border-radius:50%;
+    background:var(--forest);display:flex;align-items:center;justify-content:center;
+    box-shadow:var(--shadow-lift);opacity:0;visibility:hidden;transform:translateY(10px);
+    transition:.3s ease;z-index:900;
+  }
+  .back-to-top.show{opacity:1;visibility:visible;transform:translateY(0);}
+  .back-to-top svg{width:20px;height:20px;stroke:var(--white);}
+  .back-to-top:hover{background:var(--forest-dark);}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:900px){
+    .service-grid,.why-grid,.testimonial-grid{grid-template-columns:repeat(2,1fr);}
+    .gallery-grid{columns:2;}
+    .contact-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:680px){
+    section{padding:64px 0;}
+    .nav-links{
+      position:fixed;inset:0 0 0 30%;background:var(--forest-dark);
+      flex-direction:column;justify-content:center;align-items:flex-start;padding:40px;gap:28px;
+      transform:translateX(100%);transition:transform .35s ease;
+    }
+    .nav-links.open{transform:translateX(0);}
+    .nav-links a:not(.btn){color:var(--white)!important;font-size:1.1rem;}
+    .nav-toggle{display:flex;}
+    .nav-links .btn{margin-top:10px;}
+    .service-grid,.why-grid,.testimonial-grid{grid-template-columns:1fr;}
+    .gallery-grid{columns:1;}
+    .form-row{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr;gap:28px;}
+    .hero-buttons .btn{flex:1;justify-content:center;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER / NAV ============ -->
+<header id="site-header">
+  <div class="container">
+    <nav>
+      <a href="#home" class="logo">
+        <img src="images/logo.png" alt="Tree Amigos Landscaping logo">
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#contact" class="btn btn-primary">Get Estimate</a></li>
+      </ul>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<!-- To use a real photo: put a file at images/hero.jpg and it will show automatically. -->
+<section class="hero" id="home" style="--hero-img:url('images/hero.jpg')">
+  <svg class="hero-leaf l1" viewBox="0 0 200 200" fill="currentColor" style="color:#fff"><path d="M100 10C40 40 20 100 60 160C80 130 180 110 190 40C150 20 130 30 100 10Z"/></svg>
+  <svg class="hero-leaf l2" viewBox="0 0 200 200" fill="currentColor" style="color:#fff"><path d="M100 10C40 40 20 100 60 160C80 130 180 110 190 40C150 20 130 30 100 10Z"/></svg>
+  <div class="container hero-inner">
+    <h1>Professional Landscaping That Makes Your Property Stand Out</h1>
+    <p>Serving homeowners and businesses with quality landscaping, lawn maintenance, masonry, tree services, and snow removal.</p>
+    <div class="hero-buttons">
+      <a href="#contact" class="btn btn-primary">Get Free Estimate</a>
+      <a href="#gallery" class="btn btn-outline">View Our Work</a>
+    </div>
+  </div>
+</section>
+
+<svg class="vine-divider" id="vine1" viewBox="0 0 1180 70" preserveAspectRatio="none">
+  <path class="vine-path" d="M0 35 Q 200 5, 400 35 T 800 35 T 1180 35"/>
+  <path class="vine-leaf" d="M400 35c-6-10-2-20 8-22 4 10-2 20-8 22z"/>
+  <path class="vine-leaf" d="M800 35c6-10 2-20-8-22-4 10 2 20 8 22z"/>
+</svg>
+
+<!-- ============ SERVICES ============ -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">What We Do</span>
+      <h2>Full-Service Landscaping, Start to Finish</h2>
+      <p>From new plantings to winter snow removal, we handle every season and every part of your property.</p>
+    </div>
+    <div class="service-grid">
+
+      <div class="service-card reveal">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 22V12M12 12C12 12 4 11 4 4C11 4 12 12 12 12ZM12 12C12 12 20 11 20 4C13 4 12 12 12 12Z"/></svg></div>
+        <h3>Landscaping Work</h3>
+        <ul><li>Planting</li><li>Mulch Installation</li><li>Shrub Trimming</li></ul>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 2v6M8 5l4 3 4-3M4 14c0 5 3.5 8 8 8s8-3 8-8-3.5-6-8-6-8 1-8 6z"/></svg></div>
+        <h3>New Landscaping</h3>
+        <ul><li>Sod Installation</li><li>Lawn Seeding</li></ul>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="6" width="18" height="4" rx="1"/><path d="M6 10v8M18 10v8M4 18h16"/></svg></div>
+        <h3>Lawn Maintenance</h3>
+        <ul><li>Lawn Cutting</li><li>Weeding</li><li>Hedge Trimming</li><li>Spring Cleanup</li><li>Fall Cleanup</li><li>Leaf Removal</li></ul>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 21h18M5 21V9l7-6 7 6v12M9 21v-6h6v6"/></svg></div>
+        <h3>Masonry &amp; Pavers</h3>
+        <ul><li>Patios</li><li>Walkways</li><li>Retaining Walls</li><li>Stone Stairs</li></ul>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 2v20M12 2l-5 5M12 2l5 5M7 12l-4 3M7 12l4-3M17 12l4 3M17 12l-4-3"/></svg></div>
+        <h3>Tree Services</h3>
+        <ul><li>Tree Removal</li><li>Tree Trimming</li><li>Storm Cleanup</li></ul>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 2v20M4.5 6.5l15 11M19.5 6.5l-15 11"/></svg></div>
+        <h3>Snow Removal</h3>
+        <ul><li>Residential Snow Removal</li><li>Commercial Snow Removal</li><li>Ice Control</li></ul>
+      </div>
+
+      <div class="service-more reveal">and much more &mdash; ask us about your project</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY CHOOSE US ============ -->
+<section class="why">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow" style="color:var(--sage-light)">Why Tree Amigos</span>
+      <h2>Built on Trust, Backed by Craftsmanship</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/></svg>
+        <h4>Licensed &amp; Insured</h4>
+        <p>Fully licensed and insured for every job, big or small.</p>
+      </div>
+      <div class="why-card reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        <h4>Reliable Scheduling</h4>
+        <p>We show up when we say we will, every time.</p>
+      </div>
+      <div class="why-card reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        <h4>Affordable Pricing</h4>
+        <p>Straightforward, fair pricing with no surprise fees.</p>
+      </div>
+      <div class="why-card reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M9 11l3 3L22 4M21 12v6a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h11"/></svg>
+        <h4>Free Estimates</h4>
+        <p>No-obligation quotes, usually back to you within a day.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section>
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Kind Words</span>
+      <h2>What Our Neighbors Are Saying</h2>
+    </div>
+    <div class="testimonial-grid">
+      <div class="testimonial-card reveal">
+        <div class="stars">
+          <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6L19 7l-4.5 4.2L15.8 18 10 14.8 4.2 18l1.3-6.8L1 7l6.4-.4L10 1z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6L19 7l-4.5 4.2L15.8 18 10 14.8 4.2 18l1.3-6.8L1 7l6.4-.4L10 1z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6L19 7l-4.5 4.2L15.8 18 10 14.8 4.2 18l1.3-6.8L1 7l6.4-.4L10 1z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6L19 7l-4.5 4.2L15.8 18 10 14.8 4.2 18l1.3-6.8L1 7l6.4-.4L10 1z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6L19 7l-4.5 4.2L15.8 18 10 14.8 4.2 18l1.3-6.8L1 7l6.4-.4L10 1z"/></svg>
+        </div>
+        <p class="quote">They transformed our backyard completely. The new paver patio looks better than anything we could've imagined, and the crew was tidy and on time all week.</p>
+        <div class="testimonial-name">Karen M.</div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="stars">
+          <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6L19 7l-4.5 4.2L15.8 18 10 14.8 4.2 18l1.3-6.8L1 7l6.4-.4L10 1z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6L19 7l-4.5 4.2L15.8 18 10 14.8 4.2 18l1.3-6.8L1 7l6.4-.4L10 1z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6L19 7l-4.5 4.2L15.8 18 10 14.8 4.2 18l1.3-6.8L1 7l6.4-.4L10 1z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6L19 7l-4.5 4.2L15.8 18 10 14.8 4.2 18l1.3-6.8L1 7l6.4-.4L10 1z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6L19 7l-4.5 4.2L15.8 18 10 14.8 4.2 18l1.3-6.8L1 7l6.4-.4L10 1z"/></svg>
+        </div>
+        <p class="quote">We've used them for spring and fall cleanup two years running. Always responsive, always fair on price, and the lawn has never looked healthier.</p>
+        <div class="testimonial-name">Dave R.</div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="stars">
+          <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6L19 7l-4.5 4.2L15.8 18 10 14.8 4.2 18l1.3-6.8L1 7l6.4-.4L10 1z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6L19 7l-4.5 4.2L15.8 18 10 14.8 4.2 18l1.3-6.8L1 7l6.4-.4L10 1z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6L19 7l-4.5 4.2L15.8 18 10 14.8 4.2 18l1.3-6.8L1 7l6.4-.4L10 1z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6L19 7l-4.5 4.2L15.8 18 10 14.8 4.2 18l1.3-6.8L1 7l6.4-.4L10 1z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6L19 7l-4.5 4.2L15.8 18 10 14.8 4.2 18l1.3-6.8L1 7l6.4-.4L10 1z"/></svg>
+        </div>
+        <p class="quote">Called them after a storm took down a big limb near our roof. They had it cleared safely within a day. Professional from the first phone call.</p>
+        <div class="testimonial-name">Priya S.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA BANNER ============ -->
+<section class="cta-banner">
+  <div class="container reveal">
+    <h2>Ready to Transform Your Property?</h2>
+    <a href="#contact" class="btn btn-primary">Request Your Free Estimate</a>
+  </div>
+</section>
+
+<svg class="vine-divider" id="vine2" viewBox="0 0 1180 70" preserveAspectRatio="none">
+  <path class="vine-path" d="M0 35 Q 200 65, 400 35 T 800 35 T 1180 35"/>
+  <path class="vine-leaf" d="M400 35c-6 10-2 20 8 22 4-10-2-20-8-22z"/>
+  <path class="vine-leaf" d="M800 35c6 10 2 20-8 22-4-10 2-20 8-22z"/>
+</svg>
+
+<!-- ============ GALLERY ============ -->
+<section class="gallery-page" id="gallery">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Our Work</span>
+      <h2>A Look at Recent Projects</h2>
+      <p>Placeholder tiles below &mdash; swap these for real project photos once available.</p>
+    </div>
+    <div class="filter-bar reveal">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="landscaping">Landscaping</button>
+      <button class="filter-btn" data-filter="patios">Patios</button>
+      <button class="filter-btn" data-filter="walkways">Walkways</button>
+      <button class="filter-btn" data-filter="mulch">Mulch</button>
+      <button class="filter-btn" data-filter="trees">Trees</button>
+      <button class="filter-btn" data-filter="snow">Snow Removal</button>
+    </div>
+    <div class="gallery-grid" id="gallery-grid">
+      <!-- items injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="contact-page" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+
+      <div class="contact-info reveal">
+        <span class="eyebrow">Get In Touch</span>
+        <h2>Request Your Free Estimate</h2>
+        <p>Reach out and we'll get back to you within one business day with a no-obligation quote.</p>
+
+        <div class="info-row">
+          <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.7A2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.3 1.8.6 2.7a2 2 0 01-.4 2.1L8.1 9.8a16 16 0 006 6l1.3-1.2a2 2 0 012.1-.4c.9.3 1.8.5 2.7.6a2 2 0 011.8 2.1z"/></svg></div>
+          <div><h4>Phone</h4><p>(732) 555-0192</p></div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 6l10 7 10-7"/></svg></div>
+          <div><h4>Email</h4><p>hello@treeamigoslandscapingnj.example</p></div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+          <div><h4>Business Hours</h4><p>Mon&ndash;Fri: 7am&ndash;6pm &nbsp;|&nbsp; Sat: 8am&ndash;2pm</p></div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><h4>Service Area</h4><p>Monmouth County &amp; surrounding areas, NJ</p></div>
+        </div>
+
+        <div class="map-placeholder">Google Map placeholder &mdash; embed once address is confirmed</div>
+      </div>
+
+      <div class="form-card reveal">
+        <h3>Free Estimate Form</h3>
+        <p>Fields marked * are required.</p>
+        <form id="estimate-form" action="https://formspree.io/f/your-form-id" method="POST">
+          <div class="form-row">
+            <div class="field">
+              <label for="f-name">Name *</label>
+              <input type="text" id="f-name" name="name" required>
+            </div>
+            <div class="field">
+              <label for="f-phone">Phone *</label>
+              <input type="tel" id="f-phone" name="phone" required>
+            </div>
+          </div>
+          <div class="field">
+            <label for="f-email">Email *</label>
+            <input type="email" id="f-email" name="email" required>
+          </div>
+          <div class="field">
+            <label for="f-address">Address *</label>
+            <input type="text" id="f-address" name="address" required>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="f-service">Service Requested *</label>
+              <select id="f-service" name="service" required>
+                <option value="" disabled selected>Choose one</option>
+                <option>Landscaping</option>
+                <option>Lawn Maintenance</option>
+                <option>Masonry</option>
+                <option>Tree Service</option>
+                <option>Snow Removal</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="f-date">Preferred Date</label>
+              <input type="date" id="f-date" name="preferred_date">
+            </div>
+          </div>
+          <div class="field">
+            <label for="f-desc">Description</label>
+            <textarea id="f-desc" name="description" placeholder="Tell us a bit about the project..."></textarea>
+          </div>
+          <div class="field">
+            <label>Upload Photos</label>
+            <label class="file-field" for="f-photos">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+              <span>Click to upload photos of your property</span>
+              <input type="file" id="f-photos" name="photos" accept="image/*" multiple>
+            </label>
+            <div id="file-name"></div>
+          </div>
+          <button type="submit" class="btn btn-dark submit-btn">Submit Request</button>
+          <div class="form-msg success" id="form-msg">Thanks! Your request has been sent &mdash; we'll be in touch within one business day.</div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">
+          <img src="images/logo.png" alt="Tree Amigos Landscaping logo">
+        </div>
+        <p style="max-width:280px;font-size:.9rem;">Professional landscaping, lawn care, masonry, tree services and snow removal &mdash; licensed, insured, and locally owned.</p>
+      </div>
+      <div>
+        <h5>Navigate</h5>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <ul>
+          <li>(732) 555-0192</li>
+          <li>hello@treeamigoslandscapingnj.example</li>
+          <li>Monmouth County, NJ</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span id="year"></span> Tree Amigos Landscaping NJ. All rights reserved.</span>
+      <span>Licensed &amp; Insured</span>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" id="back-to-top" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script>
+  // year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // sticky header
+  const header = document.getElementById('site-header');
+  const backToTop = document.getElementById('back-to-top');
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY > 40;
+    header.classList.toggle('scrolled', scrolled);
+    backToTop.classList.toggle('show', window.scrollY > 500);
+  });
+  backToTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+  // mobile nav
+  const navToggle = document.getElementById('nav-toggle');
+  const navLinks = document.getElementById('nav-links');
+  navToggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open);
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', false);
+  }));
+
+  // scroll reveal
+  const revealEls = document.querySelectorAll('.reveal, .vine-divider');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, {threshold:.15});
+  revealEls.forEach(el => io.observe(el));
+
+  // gallery data + render
+  const galleryIcons = {
+    landscaping: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 22V12M12 12C12 12 4 11 4 4C11 4 12 12 12 12ZM12 12C12 12 20 11 20 4C13 4 12 12 12 12Z"/></svg>',
+    patios: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="3" y="10" width="18" height="10"/><path d="M3 10l9-6 9 6"/></svg>',
+    walkways: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 3v18M10 3v18M14 3v18M18 3v18" stroke-dasharray="3 3"/></svg>',
+    mulch: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 18h16M6 18l2-9M12 18l1-11M18 18l-2-8"/></svg>',
+    trees: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 2v20M12 2l-5 5M12 2l5 5M7 12l-4 3M7 12l4-3M17 12l4 3M17 12l-4-3"/></svg>',
+    snow: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 2v20M4.5 6.5l15 11M19.5 6.5l-15 11"/></svg>'
+  };
+  // Each item points to a file in images/gallery/. Drop a matching photo in
+  // that folder and it displays automatically — no code changes needed.
+  // If the file isn't there yet, the category color + icon shows instead.
+  const galleryData = [
+    {cat:'patios', label:'Custom Fire Pit Patio', ar:'4/5', file:'patios-1.jpg'},
+    {cat:'patios', label:'Paver Patio Installation', ar:'4/5', file:'patios-2.jpg'},
+    {cat:'patios', label:'Backyard Patio Build-Out', ar:'4/5', file:'patios-3.jpg'},
+    {cat:'walkways', label:'Paver-Bordered Driveway', ar:'4/5', file:'walkways-1.jpg'},
+    {cat:'walkways', label:'Paver Walkway Installation', ar:'4/5', file:'walkways-2.jpg'},
+    {cat:'landscaping', label:'Mulch Bed & Planting', ar:'4/3', file:'landscaping-1.jpg'},
+    {cat:'landscaping', label:'Hedge Row Shaping', ar:'4/3', file:'landscaping-2.jpg'},
+    {cat:'trees', label:'Spiral Topiary Design', ar:'4/3', file:'trees-1.jpg'},
+    {cat:'trees', label:'Sculpted Topiary Artistry', ar:'4/3', file:'trees-2.jpg'},
+    {cat:'trees', label:'Precision Evergreen Shaping', ar:'4/3', file:'trees-3.jpg'},
+    {cat:'trees', label:'Hedge & Ornamental Tree Care', ar:'4/3', file:'trees-4.jpg'},
+    {cat:'trees', label:'Spiral Shrub Sculpting', ar:'4/5', file:'trees-5.jpg'},
+    {cat:'mulch', label:'Mulch Installation', ar:'4/3', file:'mulch-1.jpg'},
+    {cat:'snow', label:'Snow Removal Service', ar:'4/3', file:'snow-1.jpg'}
+  ];
+
+  const grid = document.getElementById('gallery-grid');
+  function renderGallery(filter){
+    grid.innerHTML = '';
+    galleryData
+      .filter(item => filter === 'all' || item.cat === filter)
+      .forEach(item => {
+        const el = document.createElement('div');
+        el.className = 'gallery-item reveal visible';
+        el.innerHTML = `
+          <div class="gallery-tile g-${item.cat}" style="--ar:${item.ar}; --img:url('images/gallery/${item.file}')">
+            <span class="badge">${item.cat.charAt(0).toUpperCase() + item.cat.slice(1)}</span>
+            ${galleryIcons[item.cat]}
+            <span class="tile-label">${item.label}</span>
+          </div>`;
+        grid.appendChild(el);
+      });
+  }
+  renderGallery('all');
+
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderGallery(btn.dataset.filter);
+    });
+  });
+
+  // file upload label
+  const fileInput = document.getElementById('f-photos');
+  const fileNameEl = document.getElementById('file-name');
+  fileInput.addEventListener('change', () => {
+    fileNameEl.textContent = fileInput.files.length
+      ? `${fileInput.files.length} file(s) selected`
+      : '';
+  });
+
+  // form submit (client-side demo; swap Formspree action with real form ID)
+  const form = document.getElementById('estimate-form');
+  const formMsg = document.getElementById('form-msg');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    formMsg.classList.add('show');
+    form.reset();
+    fileNameEl.textContent = '';
+    formMsg.scrollIntoView({behavior:'smooth', block:'nearest'});
+  });
+</script>
+
+</body>
+</html>
