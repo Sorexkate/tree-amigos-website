@@ -224,7 +224,7 @@
     aspect-ratio:var(--ar,4/3);width:100%;
     display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
     color:var(--white);position:relative;overflow:hidden;
-    background-image:var(--img,none);
+    background-image:var(--img, var(--grad, none));
     background-size:cover;background-position:center;
     transition:transform .5s ease;
   }
@@ -241,12 +241,12 @@
     font-size:.72rem;font-weight:700;padding:5px 12px;border-radius:100px;letter-spacing:.03em;
     text-transform:uppercase;
   }
-  .g-landscaping{background:linear-gradient(150deg,#3C7350,#2E5E3E);}
-  .g-patios{background:linear-gradient(150deg,#8A7358,#4A3B2A);}
-  .g-walkways{background:linear-gradient(150deg,#9C8B6E,#6B5842);}
-  .g-mulch{background:linear-gradient(150deg,#5B4632,#4A3B2A);}
-  .g-trees{background:linear-gradient(150deg,#4C7A47,#264A2A);}
-  .g-snow{background:linear-gradient(150deg,#7EA172,#4E6E56);}
+  .g-landscaping{--grad:linear-gradient(150deg,#3C7350,#2E5E3E);}
+  .g-patios{--grad:linear-gradient(150deg,#8A7358,#4A3B2A);}
+  .g-walkways{--grad:linear-gradient(150deg,#9C8B6E,#6B5842);}
+  .g-mulch{--grad:linear-gradient(150deg,#5B4632,#4A3B2A);}
+  .g-trees{--grad:linear-gradient(150deg,#4C7A47,#264A2A);}
+  .g-snow{--grad:linear-gradient(150deg,#7EA172,#4E6E56);}
 
   /* ---------- CONTACT ---------- */
   .contact-page{background:var(--white);}
@@ -261,12 +261,8 @@
   .info-icon svg{width:20px;height:20px;stroke:var(--forest);}
   .info-row h4{font-size:.95rem;margin-bottom:3px;}
   .info-row p{font-size:.92rem;color:#5c5044;}
-  .map-placeholder{
-    margin-top:8px;border-radius:var(--radius);height:200px;
-    background:repeating-linear-gradient(45deg,var(--beige),var(--beige) 10px,#EFE9DB 10px,#EFE9DB 20px);
-    display:flex;align-items:center;justify-content:center;color:#8a7d68;font-size:.85rem;font-weight:500;
-    border:1.5px dashed var(--sage-light);
-  }
+  .map-embed{margin-top:8px;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);}
+  .map-embed iframe{display:block;}
   .form-card{
     background:var(--beige);border-radius:var(--radius);padding:40px;box-shadow:var(--shadow);
   }
@@ -295,11 +291,13 @@
   .file-field input{display:none;}
   #file-name{font-size:.82rem;color:var(--forest);margin-top:6px;font-weight:600;}
   .submit-btn{width:100%;justify-content:center;padding:16px;font-size:1rem;}
+  .submit-btn[disabled]{opacity:.65;cursor:not-allowed;}
   .form-msg{
     margin-top:16px;padding:14px 16px;border-radius:var(--radius-sm);font-size:.88rem;display:none;
   }
   .form-msg.show{display:block;}
   .form-msg.success{background:#E4EFE1;color:var(--forest-dark);}
+  .form-msg.error{background:#F5E1DD;color:#8a3b2a;}
 
   a:focus-visible, button:focus-visible{outline:2.5px solid var(--sage);outline-offset:3px;}
 
@@ -376,7 +374,6 @@
 </header>
 
 <!-- ============ HERO ============ -->
-<!-- To use a real photo: put a file at images/hero.jpg and it will show automatically. -->
 <section class="hero" id="home" style="--hero-img:url('images/hero.jpg')">
   <svg class="hero-leaf l1" viewBox="0 0 200 200" fill="currentColor" style="color:#fff"><path d="M100 10C40 40 20 100 60 160C80 130 180 110 190 40C150 20 130 30 100 10Z"/></svg>
   <svg class="hero-leaf l2" viewBox="0 0 200 200" fill="currentColor" style="color:#fff"><path d="M100 10C40 40 20 100 60 160C80 130 180 110 190 40C150 20 130 30 100 10Z"/></svg>
@@ -544,7 +541,7 @@
     <div class="section-head reveal">
       <span class="eyebrow">Our Work</span>
       <h2>A Look at Recent Projects</h2>
-      <p>Placeholder tiles below &mdash; swap these for real project photos once available.</p>
+      <p>A sample of finished landscaping, masonry, and tree work around Monmouth County.</p>
     </div>
     <div class="filter-bar reveal">
       <button class="filter-btn active" data-filter="all">All</button>
@@ -573,11 +570,11 @@
 
         <div class="info-row">
           <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.7A2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.3 1.8.6 2.7a2 2 0 01-.4 2.1L8.1 9.8a16 16 0 006 6l1.3-1.2a2 2 0 012.1-.4c.9.3 1.8.5 2.7.6a2 2 0 011.8 2.1z"/></svg></div>
-          <div><h4>Phone</h4><p>(732) 555-0192</p></div>
+          <div><h4>Phone</h4><p>(732) 912-3068</p></div>
         </div>
         <div class="info-row">
           <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 6l10 7 10-7"/></svg></div>
-          <div><h4>Email</h4><p>hello@treeamigoslandscapingnj.example</p></div>
+          <div><h4>Email</h4><p>treeamigoslandscapingnj@gmail.com</p></div>
         </div>
         <div class="info-row">
           <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
@@ -588,7 +585,13 @@
           <div><h4>Service Area</h4><p>Monmouth County &amp; surrounding areas, NJ</p></div>
         </div>
 
-        <div class="map-placeholder">Google Map placeholder &mdash; embed once address is confirmed</div>
+        <div class="map-embed">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3037.2670390785506!2d-74.1825423232984!3d40.42508547143818!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2337d75cd3973%3A0x31bc506dc22175!2s15%20Mason%20Dr%2C%20Hazlet%2C%20NJ%2007730!5e0!3m2!1sen!2sus!4v1783279712975!5m2!1sen!2sus"
+            width="100%" height="200" style="border:0;" allowfullscreen=""
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
       </div>
 
       <div class="form-card reveal">
@@ -644,8 +647,9 @@
             </label>
             <div id="file-name"></div>
           </div>
-          <button type="submit" class="btn btn-dark submit-btn">Submit Request</button>
-          <div class="form-msg success" id="form-msg">Thanks! Your request has been sent &mdash; we'll be in touch within one business day.</div>
+          <button type="submit" class="btn btn-dark submit-btn" id="submit-btn">Submit Request</button>
+          <div class="form-msg success" id="form-msg-success">Thanks! Your request has been sent &mdash; we'll be in touch within one business day.</div>
+          <div class="form-msg error" id="form-msg-error">Something went wrong sending your request. Please call or email us directly, or try again in a moment.</div>
         </form>
       </div>
 
@@ -766,7 +770,7 @@
         const el = document.createElement('div');
         el.className = 'gallery-item reveal visible';
         el.innerHTML = `
-          <div class="gallery-tile g-${item.cat}" style="--ar:${item.ar}; --img:url('images/gallery/${item.file}')">
+          <div class="gallery-tile g-${item.cat}" style="--ar:${item.ar}; --img:url('images/gallery/${item.file}')" role="img" aria-label="${item.label} — ${item.cat} project by Tree Amigos Landscaping NJ">
             <span class="badge">${item.cat.charAt(0).toUpperCase() + item.cat.slice(1)}</span>
             ${galleryIcons[item.cat]}
             <span class="tile-label">${item.label}</span>
@@ -793,15 +797,44 @@
       : '';
   });
 
-  // form submit (client-side demo; swap Formspree action with real form ID)
+  // form submit — actually sends to Formspree via fetch, then shows a message
   const form = document.getElementById('estimate-form');
-  const formMsg = document.getElementById('form-msg');
+  const successMsg = document.getElementById('form-msg-success');
+  const errorMsg = document.getElementById('form-msg-error');
+  const submitBtn = document.getElementById('submit-btn');
+
   form.addEventListener('submit', function(e){
     e.preventDefault();
-    formMsg.classList.add('show');
-    form.reset();
-    fileNameEl.textContent = '';
-    formMsg.scrollIntoView({behavior:'smooth', block:'nearest'});
+    successMsg.classList.remove('show');
+    errorMsg.classList.remove('show');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+
+    const data = new FormData(form);
+
+    fetch(form.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(response => {
+      if (response.ok) {
+        successMsg.classList.add('show');
+        form.reset();
+        fileNameEl.textContent = '';
+      } else {
+        errorMsg.classList.add('show');
+      }
+    })
+    .catch(() => {
+      errorMsg.classList.add('show');
+    })
+    .finally(() => {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit Request';
+      (successMsg.classList.contains('show') ? successMsg : errorMsg)
+        .scrollIntoView({behavior:'smooth', block:'nearest'});
+    });
   });
 </script>
 
